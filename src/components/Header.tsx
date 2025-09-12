@@ -1,0 +1,73 @@
+import React from 'react';
+import styled from 'styled-components/native';
+import { Avatar } from 'react-native-elements';
+import { useAuth } from '../contexts/AuthContext';
+import theme from '../styles/theme';
+import NotificationBell from './NotificationBell';
+
+const Header: React.FC = () => {
+  const { user } = useAuth();
+
+  if (!user) return null;
+
+  return (
+    <Container>
+      <UserInfo>
+        <Avatar
+          size="medium"
+          rounded
+          source={{ uri: user.image }}
+          containerStyle={styles.avatar}
+        />
+        <TextContainer>
+          <WelcomeText>Bem-vindo(a),</WelcomeText>
+          <UserName>{user.name}</UserName>
+        </TextContainer>
+      </UserInfo>
+      <NotificationBell />
+    </Container>
+  );
+};
+
+const styles = {
+  avatar: {
+    backgroundColor: theme.colors.primary,
+  },
+};
+
+const Container = styled.View`
+  background-color: ${theme.colors.primary};
+  padding: 16px;
+  fontFamily: Arimo;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-color: ${theme.colors.border};
+`;
+const UserInfo = styled.View`
+  flex-direction: row;
+  align-items: center;
+  fontFamily: Arimo;
+`;
+
+const TextContainer = styled.View`
+  margin-left: 12px;
+  fontFamily: Arimo;
+`;
+
+const WelcomeText = styled.Text`
+  font-size: 14px;
+  color: ${theme.colors.white};
+  opacity: 0.9;
+  fontFamily: Arimo;
+`;
+
+const UserName = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  fontFamily: Arimo;
+  color: ${theme.colors.white};
+`;
+
+export default Header;
