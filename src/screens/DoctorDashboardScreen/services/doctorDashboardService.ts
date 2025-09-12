@@ -3,11 +3,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Appointment } from '../../../types/appointments';
 
 export class DoctorDashboardService {
-  private static readonly STORAGE_KEY = 'doctor_appointments';
+
 
   static async loadAppointments(): Promise<Appointment[]> {
     try {
-      const storedAppointments = await AsyncStorage.getItem(this.STORAGE_KEY);
+      const storedAppointments = await AsyncStorage.getItem('@MedicalApp:appointments');
+        console.log("Appointments carregados:", storedAppointments); 
       if (storedAppointments) {
         return JSON.parse(storedAppointments);
       }
@@ -20,7 +21,7 @@ export class DoctorDashboardService {
 
   static async saveAppointments(appointments: Appointment[]): Promise<void> {
     try {
-      await AsyncStorage.setItem(this.STORAGE_KEY, JSON.stringify(appointments));
+      await AsyncStorage.setItem('@MedicalApp:appointments', JSON.stringify(appointments));
     } catch (error) {
       console.error('Erro ao salvar consultas:', error);
       throw error;

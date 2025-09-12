@@ -44,7 +44,7 @@ export const AppointmentItem: React.FC<AppointmentItemProps> = ({
     <AppointmentCard>
       <PatientImage source={{ uri: patient?.image || 'https://via.placeholder.com/100' }} />
       <InfoContainer>
-        <PatientName>{patient?.name || 'Paciente não encontrado'}</PatientName>
+        <PatientName>{appointment.patientName || patient?.name || 'Paciente não encontrado'}</PatientName>
         <DateTime>{new Date(appointment.date).toLocaleDateString()} - {appointment.time}</DateTime>
         <Description>{appointment.time}</Description>
         <Status status={appointment.status}>
