@@ -19,7 +19,7 @@ import {
   EmptyText,
 } from './styles';
 
-import { useNotifications } from './hooks/useNotifications';
+import { useNotifications } from './hooks/useNotification';
 import NotificationItem from './components/NotificationItem';
 import { Notification as NotificationModel } from './models';
 

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Notification } from '../models';
-import * as service from '../services/notificationsService';
+import * as service from '../services/notificationService';
 
 export function useNotifications(userId?: string) {
   const [notifications, setNotifications] = useState<Notification[]>([]);
